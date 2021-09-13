@@ -1,0 +1,19 @@
+PyDSS.api.src package
+=====================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   PyDSS.api.src.app
+   PyDSS.api.src.web
+
+Module contents
+---------------
+
+.. automodule:: PyDSS.api.src
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,10 @@
+PyDSS.api.schema package
+========================
+
+Module contents
+---------------
+
+.. automodule:: PyDSS.api.schema
+   :members:
+   :undoc-members:
+   :show-inheritance:

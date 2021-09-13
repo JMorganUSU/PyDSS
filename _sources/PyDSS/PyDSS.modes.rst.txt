@@ -1,0 +1,45 @@
+PyDSS.modes package
+===================
+
+Submodules
+----------
+
+PyDSS.modes.Dynamic module
+--------------------------
+
+.. automodule:: PyDSS.modes.Dynamic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.modes.QSTS module
+-----------------------
+
+.. automodule:: PyDSS.modes.QSTS
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.modes.Snapshot module
+---------------------------
+
+.. automodule:: PyDSS.modes.Snapshot
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.modes.solver\_base module
+-------------------------------
+
+.. automodule:: PyDSS.modes.solver_base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyDSS.modes
+   :members:
+   :undoc-members:
+   :show-inheritance:

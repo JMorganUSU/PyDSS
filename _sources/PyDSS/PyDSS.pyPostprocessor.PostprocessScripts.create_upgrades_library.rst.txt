@@ -1,0 +1,21 @@
+PyDSS.pyPostprocessor.PostprocessScripts.create\_upgrades\_library package
+==========================================================================
+
+Submodules
+----------
+
+PyDSS.pyPostprocessor.PostprocessScripts.create\_upgrades\_library.AutomatedThermalUpgrade\_createequiplibraries module
+-----------------------------------------------------------------------------------------------------------------------
+
+.. automodule:: PyDSS.pyPostprocessor.PostprocessScripts.create_upgrades_library.AutomatedThermalUpgrade_createequiplibraries
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyDSS.pyPostprocessor.PostprocessScripts.create_upgrades_library
+   :members:
+   :undoc-members:
+   :show-inheritance:

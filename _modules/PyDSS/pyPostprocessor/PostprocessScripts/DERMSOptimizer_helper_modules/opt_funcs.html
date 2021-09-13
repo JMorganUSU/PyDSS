@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link href="../../../../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../PyDSS.html">PyDSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../PyDSS/modules.html">PyDSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.defaults.html">PyDSS.defaults package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.modes.html">PyDSS.modes package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.reports.html">PyDSS.reports package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.utils.html">PyDSS.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">lil_matrix</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<div class="viewcode-block" id="linear_powerflow_model"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.linear_powerflow_model">[docs]</a><span class="k">def</span> <span class="nf">linear_powerflow_model</span><span class="p">(</span><span class="n">Y00</span><span class="p">,</span><span class="n">Y01</span><span class="p">,</span><span class="n">Y10</span><span class="p">,</span><span class="n">Y11_inv</span><span class="p">,</span><span class="n">I_coeff</span><span class="p">,</span><span class="n">V1</span><span class="p">,</span><span class="n">slack_no</span><span class="p">):</span>
+    <span class="c1"># voltage linearlization</span>
+    <span class="n">V1_conj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">V1</span><span class="p">[</span><span class="n">slack_no</span><span class="p">:])</span>
+    <span class="n">V1_conj_inv</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">V1_conj</span>
+    <span class="n">coeff_V</span> <span class="o">=</span> <span class="n">Y11_inv</span> <span class="o">*</span> <span class="n">V1_conj_inv</span>
+    <span class="n">coeff_V_P</span> <span class="o">=</span> <span class="n">coeff_V</span>
+    <span class="n">coeff_V_Q</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">coeff_V</span>
+    <span class="n">coeff_Vm</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y11_inv</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y10</span><span class="p">,</span><span class="n">V1</span><span class="p">[:</span><span class="n">slack_no</span><span class="p">]))</span>
+
+    <span class="c1"># voltage magnitude linearization</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">coeff_Vm</span>
+    <span class="n">m_inv</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">coeff_Vm</span>
+    <span class="n">coeff_Vmag_k</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">coeff_V</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span><span class="n">m_inv</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">coeff_Vmag_P</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span><span class="n">coeff_Vmag_k</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">coeff_Vmag_Q</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span><span class="n">coeff_Vmag_k</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+
+    <span class="c1"># current linearization</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">I_coeff</span><span class="p">):</span>
+        <span class="n">coeff_I_P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">I_coeff</span><span class="p">[:,</span><span class="n">slack_no</span><span class="p">:],</span><span class="n">coeff_V_P</span><span class="p">)</span>
+        <span class="n">coeff_I_Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">I_coeff</span><span class="p">[:,</span><span class="n">slack_no</span><span class="p">:],</span><span class="n">coeff_V_Q</span><span class="p">)</span>
+        <span class="n">coeff_I_const</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">I_coeff</span><span class="p">[:,</span><span class="n">slack_no</span><span class="p">:],</span><span class="n">coeff_Vm</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">I_coeff</span><span class="p">[:,:</span><span class="n">slack_no</span><span class="p">],</span><span class="n">V1</span><span class="p">[:</span><span class="n">slack_no</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">coeff_I_P</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">coeff_I_Q</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">coeff_I_const</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1">#=========================================Yiyun&#39;s Notes===========================================#</span>
+    <span class="c1"># Output relations: Vmag = coeff_Vmag_P * Pnode + coeff_Vmag_Q * Qnode + coeff_Vm</span>
+    <span class="c1">#                      I = coeff_I_P * Pnode + coeff_I_Q * Qnode + coeff_I_const (complex value)</span>
+    <span class="c1"># ================================================================================================#</span>
+
+    <span class="k">return</span> <span class="n">coeff_V_P</span><span class="p">,</span> <span class="n">coeff_V_Q</span><span class="p">,</span> <span class="n">coeff_Vm</span><span class="p">,</span> <span class="n">coeff_Vmag_P</span><span class="p">,</span> <span class="n">coeff_Vmag_Q</span><span class="p">,</span> <span class="n">coeff_Vmag_k</span><span class="p">,</span> <span class="n">coeff_I_P</span><span class="p">,</span> <span class="n">coeff_I_Q</span><span class="p">,</span> <span class="n">coeff_I_const</span></div>
+
+<div class="viewcode-block" id="validate_linear_model"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.validate_linear_model">[docs]</a><span class="k">def</span> <span class="nf">validate_linear_model</span><span class="p">(</span><span class="n">coeff_Vp</span><span class="p">,</span><span class="n">coeff_Vq</span><span class="p">,</span><span class="n">coeff_Vm</span><span class="p">,</span><span class="n">PQ_node</span><span class="p">,</span><span class="n">slack_number</span><span class="p">):</span>
+    <span class="n">V_cal</span> <span class="o">=</span> <span class="n">coeff_Vm</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff_Vp</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">PQ_node</span><span class="p">[</span><span class="n">slack_number</span><span class="p">:]]))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff_Vq</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">PQ_node</span><span class="p">[</span><span class="n">slack_number</span><span class="p">:]]))</span>
+    <span class="n">v_cal_1</span> <span class="o">=</span> <span class="n">coeff_Vm</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff_Vp</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">PQ_node</span><span class="p">[</span><span class="n">slack_number</span><span class="p">:]</span><span class="o">*</span><span class="mi">1000</span><span class="p">))</span>
+    <span class="c1">#coeff_Vp*Pnode + coeff_Vq*Qnode + coeff_Vm</span>
+
+    <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+    <span class="c1"># 1000 should be the S base</span>
+    <span class="c1"># =================================================================================================#</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">V_cal</span><span class="p">,</span><span class="n">v_cal_1</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="check_VI_correct"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.check_VI_correct">[docs]</a><span class="k">def</span> <span class="nf">check_VI_correct</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span><span class="n">PQ_node</span><span class="p">,</span><span class="n">slack_number</span><span class="p">,</span><span class="n">coeff_V</span><span class="p">,</span><span class="n">coeff_Vm</span><span class="p">,</span><span class="n">coeff_Vmag_P</span><span class="p">,</span><span class="n">coeff_Vmag_Q</span><span class="p">,</span><span class="n">coeff_Vmag_k</span><span class="p">,</span><span class="n">Y10</span><span class="p">,</span><span class="n">Y11</span><span class="p">,</span><span class="n">coeff_I_P</span><span class="p">,</span> <span class="n">coeff_I_Q</span><span class="p">,</span> <span class="n">coeff_I_const</span><span class="p">,</span><span class="n">I_coeff</span><span class="p">):</span>
+    <span class="n">V1_linear</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff_V</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">PQ_node</span><span class="p">[</span><span class="n">slack_number</span><span class="p">:]</span><span class="o">*</span><span class="mi">1000</span><span class="p">))</span> <span class="o">+</span> <span class="n">coeff_Vm</span>
+    <span class="n">V1_linear</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">V1_linear</span><span class="p">)</span>
+    <span class="n">Vdiff</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="nb">zip</span><span class="p">(</span><span class="n">V1</span><span class="p">[</span><span class="n">slack_number</span><span class="p">:],</span><span class="n">V1_linear</span><span class="p">)))</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;voltage_diff.csv&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">csvwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">Vdiff</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">V1_mag_linear</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff_Vmag_P</span><span class="p">,(</span><span class="n">PQ_node</span><span class="p">[</span><span class="n">slack_number</span><span class="p">:]</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff_Vmag_Q</span><span class="p">,(</span><span class="n">PQ_node</span><span class="p">[</span><span class="n">slack_number</span><span class="p">:]</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span> <span class="o">+</span> <span class="n">coeff_Vmag_k</span>
+    <span class="n">V1_mag_linear</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">V1_mag_linear</span><span class="p">)</span>
+    <span class="n">Vdiff</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="nb">zip</span><span class="p">(</span><span class="n">V1</span><span class="p">[</span><span class="n">slack_number</span><span class="p">:],</span><span class="n">V1_mag_linear</span><span class="p">)))</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;voltageMag_diff.csv&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">csvwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">Vdiff</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># get Ibus   </span>
+    <span class="n">Ibus</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="o">/</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(),</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">PQ_node</span><span class="p">)[</span><span class="n">slack_number</span><span class="p">:],</span><span class="n">V1</span><span class="p">[</span><span class="n">slack_number</span><span class="p">:])))</span>
+    <span class="n">Ibus_cal_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y10</span><span class="p">,</span><span class="n">V1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">slack_number</span><span class="p">])</span>
+    <span class="n">Ibus_cal_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Y11</span><span class="p">,</span><span class="n">V1</span><span class="p">[</span><span class="n">slack_number</span><span class="p">:])</span>
+    <span class="n">Ibus_cal</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="nb">zip</span><span class="p">(</span><span class="n">Ibus_cal_0</span><span class="p">,</span><span class="n">Ibus_cal_1</span><span class="p">)))</span>
+    <span class="n">Idiff</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">zip</span><span class="p">(</span><span class="n">Ibus</span><span class="p">,</span><span class="n">Ibus_cal</span><span class="p">)))</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;currentBus_diff.csv&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">csvwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">Idiff</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># get Ibranch</span>
+    <span class="n">Ibranch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">I_coeff</span><span class="p">,</span><span class="n">V1</span><span class="p">)</span>
+    <span class="n">Ibranch_cal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">I_coeff</span><span class="p">[:,</span><span class="n">slack_number</span><span class="p">:],</span><span class="n">V1_linear</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">I_coeff</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">slack_number</span><span class="p">],</span><span class="n">V1</span><span class="p">[:</span><span class="n">slack_number</span><span class="p">])</span>
+    <span class="n">Ibranch_diff</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="nb">zip</span><span class="p">(</span><span class="n">Ibranch</span><span class="p">,</span><span class="n">Ibranch_cal</span><span class="p">)))</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;current_diff.csv&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">csvwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">Ibranch_diff</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="costFun"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.costFun">[docs]</a><span class="k">def</span> <span class="nf">costFun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dual_upper</span><span class="p">,</span><span class="n">dual_lower</span><span class="p">,</span><span class="n">v1_pu</span><span class="p">,</span><span class="n">Ppv_max</span><span class="p">,</span><span class="n">coeff_p</span><span class="p">,</span><span class="n">coeff_q</span><span class="p">,</span><span class="n">NPV</span><span class="p">,</span><span class="n">control_bus_index</span><span class="p">,</span><span class="n">Vupper</span><span class="p">,</span><span class="n">Vlower</span><span class="p">,</span><span class="n">dual_current</span><span class="p">,</span><span class="n">ThermalLimit</span><span class="p">,</span><span class="n">I1_mag</span><span class="p">):</span>
+    <span class="c1"># cost_function = coeff_p*(Pmax-P)^2+coeff_q*Q^2+dual_upper*(v1-1.05)+dual_lower*(0.95-v1)</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NPV</span><span class="p">):</span>
+        <span class="n">f1</span> <span class="o">=</span> <span class="n">f1</span> <span class="o">+</span> <span class="n">coeff_p</span><span class="o">*</span><span class="p">(</span><span class="n">Ppv_max</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">Ppv_max</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span><span class="o">+</span><span class="n">coeff_q</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="o">+</span><span class="n">NPV</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="o">+</span><span class="n">NPV</span><span class="p">]</span>
+    <span class="c1">#f = f1 + np.dot(dual_upper,(np.array(v1_pu)[control_bus_index]-Vupper)) + np.dot(dual_lower,(Vlower-np.array(v1_pu)[control_bus_index]))</span>
+    <span class="n">v_evaluate</span> <span class="o">=</span> <span class="p">[</span><span class="n">v1_pu</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">control_bus_index</span><span class="p">]</span>
+    <span class="n">f2</span> <span class="o">=</span> <span class="n">f1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dual_upper</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">max</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="n">Vupper</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">v_evaluate</span><span class="p">]))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dual_lower</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">max</span><span class="p">(</span><span class="n">Vlower</span><span class="o">-</span><span class="n">ii</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">v_evaluate</span><span class="p">]))</span>
+    <span class="n">f3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dual_current</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">max</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="nb">zip</span><span class="p">(</span><span class="n">I1_mag</span><span class="p">,</span><span class="n">ThermalLimit</span><span class="p">)))]))</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">f2</span><span class="o">+</span><span class="n">f3</span>
+
+    <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+    <span class="c1"># f1 is the quadratic PV curtailment plus quadratic reactive power injection</span>
+    <span class="c1"># f2 is the Lagrangian term for voltage violations and line current violations</span>
+    <span class="c1"># ===&gt; Note the &quot;control_bus_index&quot; might be the index for measurement sensitivity analysis</span>
+    <span class="c1"># =================================================================================================#</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PV_costFun_gradient"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.PV_costFun_gradient">[docs]</a><span class="k">def</span> <span class="nf">PV_costFun_gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">coeff_p</span><span class="p">,</span> <span class="n">coeff_q</span><span class="p">,</span> <span class="n">Pmax</span><span class="p">):</span>
+    <span class="n">grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)):</span>
+        <span class="n">grad</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">coeff_p</span><span class="o">*</span><span class="p">(</span><span class="n">Pmax</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span>
+        <span class="n">grad</span><span class="p">[</span><span class="n">ii</span><span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">coeff_q</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="mi">1000</span>
+        <span class="c1">#grad[ii + int(len(x) / 2)] = 0</span>
+
+    <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+    <span class="c1"># x is the decision vector [P,Q]</span>
+    <span class="c1"># =================================================================================================#</span>
+
+    <span class="k">return</span> <span class="n">grad</span></div>
+
+<div class="viewcode-block" id="voltage_constraint_gradient"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.voltage_constraint_gradient">[docs]</a><span class="k">def</span> <span class="nf">voltage_constraint_gradient</span><span class="p">(</span><span class="n">AllNodeNames</span><span class="p">,</span><span class="n">node_withPV</span><span class="p">,</span> <span class="n">dual_upper</span><span class="p">,</span> <span class="n">dual_lower</span><span class="p">,</span> <span class="n">coeff_Vmag_p</span><span class="p">,</span> <span class="n">coeff_Vmag_q</span><span class="p">):</span>
+    <span class="n">node_noslackbus</span> <span class="o">=</span> <span class="n">AllNodeNames</span>
+    <span class="n">node_noslackbus</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+    <span class="c1"># remove the slack bus</span>
+    <span class="c1"># =================================================================================================#</span>
+
+    <span class="n">grad_upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_noslackbus</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">grad_lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_noslackbus</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">node_noslackbus</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">node_withPV</span><span class="p">:</span>
+            <span class="n">grad_upper</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">dual_upper</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">*</span><span class="n">coeff_Vmag_p</span><span class="p">[:,</span><span class="n">count</span><span class="p">]</span>
+            <span class="n">grad_upper</span><span class="p">[</span><span class="n">count</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">node_noslackbus</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dual_upper</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span> <span class="o">*</span> <span class="n">coeff_Vmag_q</span><span class="p">[:,</span><span class="n">count</span><span class="p">]</span>
+            <span class="n">grad_lower</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">dual_lower</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span> <span class="o">*</span> <span class="n">coeff_Vmag_p</span><span class="p">[:,</span> <span class="n">count</span><span class="p">]</span>
+            <span class="n">grad_lower</span><span class="p">[</span><span class="n">count</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_noslackbus</span><span class="p">)]</span> <span class="o">=</span> <span class="o">-</span><span class="n">dual_lower</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span> <span class="o">*</span> <span class="n">coeff_Vmag_q</span><span class="p">[:,</span> <span class="n">count</span><span class="p">]</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">grad_upper</span><span class="p">,</span><span class="n">grad_lower</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="current_constraint_gradient"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.current_constraint_gradient">[docs]</a><span class="k">def</span> <span class="nf">current_constraint_gradient</span><span class="p">(</span><span class="n">AllNodeNames</span><span class="p">,</span><span class="n">node_withPV</span><span class="p">,</span> <span class="n">dual_upper</span><span class="p">,</span><span class="n">coeff_Imag_p</span><span class="p">,</span> <span class="n">coeff_Imag_q</span><span class="p">):</span>
+    <span class="n">node_noslackbus</span> <span class="o">=</span> <span class="n">AllNodeNames</span>
+    <span class="n">node_noslackbus</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">grad_upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_noslackbus</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">node_noslackbus</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">node_withPV</span><span class="p">:</span>
+            <span class="n">grad_upper</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">dual_upper</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">*</span><span class="n">coeff_Imag_p</span><span class="p">[:,</span><span class="n">count</span><span class="p">]</span>
+            <span class="n">grad_upper</span><span class="p">[</span><span class="n">count</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">node_noslackbus</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dual_upper</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span> <span class="o">*</span> <span class="n">coeff_Imag_q</span><span class="p">[:,</span><span class="n">count</span><span class="p">]</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">grad_upper</span></div>
+
+    <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+    <span class="c1"># PV_costFun_gradient,  voltage_constraint_gradient, current_constraint_gradient and project_PV..</span>
+    <span class="c1"># ... are set up for updating the PV decision variables in eq(10)</span>
+    <span class="c1"># =================================================================================================#</span>
+
+<div class="viewcode-block" id="voltage_constraint"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.voltage_constraint">[docs]</a><span class="k">def</span> <span class="nf">voltage_constraint</span><span class="p">(</span><span class="n">V1_mag</span><span class="p">):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">V1_mag</span><span class="o">-</span><span class="mf">1.05</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.95</span><span class="o">-</span><span class="n">V1_mag</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">g</span></div>
+
+<div class="viewcode-block" id="current_constraint"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.current_constraint">[docs]</a><span class="k">def</span> <span class="nf">current_constraint</span><span class="p">(</span><span class="n">I1_mag</span><span class="p">,</span><span class="n">Imax</span><span class="p">):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I1_mag</span><span class="o">-</span><span class="n">Imax</span><span class="p">)</span>
+
+    <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+    <span class="c1"># assume single directional power flow</span>
+    <span class="c1"># voltage_constraint, current_constraint, and project_dualvariable are set up for updating the dual...</span>
+    <span class="c1"># ... variables in eq (11)</span>
+    <span class="c1"># =================================================================================================#</span>
+
+    <span class="k">return</span> <span class="n">g</span></div>
+
+<div class="viewcode-block" id="project_dualvariable"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.project_dualvariable">[docs]</a><span class="k">def</span> <span class="nf">project_dualvariable</span><span class="p">(</span><span class="n">mu</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mu</span><span class="p">)):</span>
+        <span class="n">mu</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+    <span class="c1"># If the corresponding constraints in primal problem is in canonical form, then dual variable is &gt;=0</span>
+    <span class="c1"># =================================================================================================#</span>
+
+    <span class="k">return</span> <span class="n">mu</span></div>
+
+<div class="viewcode-block" id="project_PV"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.project_PV">[docs]</a><span class="k">def</span> <span class="nf">project_PV</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Pmax</span><span class="p">,</span><span class="n">Sinv</span><span class="p">):</span>
+    <span class="n">Qavailable</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">Pavailable</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Sinv</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">Pmax</span><span class="p">[</span><span class="n">ii</span><span class="p">]:</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">Pmax</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="n">Sinv</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">]:</span>
+            <span class="n">Qmax</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Sinv</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">*</span><span class="n">Sinv</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Qmax</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="o">+</span><span class="n">num</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">Qmax</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="o">+</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="n">Qmax</span>
+        <span class="c1"># elif x[ii + num] &lt; 0:</span>
+        <span class="c1">#     x[ii + num] = 0</span>
+        <span class="k">elif</span> <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="o">+</span><span class="n">num</span><span class="p">]</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">Qmax</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="o">+</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">Qmax</span>
+
+        <span class="n">Pavailable</span> <span class="o">=</span> <span class="n">Pavailable</span> <span class="o">+</span> <span class="n">Pmax</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
+        <span class="n">Qavailable</span> <span class="o">=</span> <span class="n">Qavailable</span> <span class="o">+</span> <span class="n">Qmax</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">Pavailable</span><span class="p">,</span><span class="n">Qavailable</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="dual_update"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.dual_update">[docs]</a><span class="k">def</span> <span class="nf">dual_update</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">coeff_mu</span><span class="p">,</span><span class="n">constraint</span><span class="p">):</span>
+    <span class="n">mu_new</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">+</span> <span class="n">coeff_mu</span><span class="o">*</span><span class="n">constraint</span>
+    <span class="n">mu_new</span> <span class="o">=</span> <span class="n">project_dualvariable</span><span class="p">(</span><span class="n">mu_new</span><span class="p">)</span>
+
+    <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+    <span class="c1"># normal way for update Lagrangian variable is by the sub-gradient of cost function</span>
+    <span class="c1"># Here is the equation (11) in the draft paper</span>
+    <span class="c1"># =================================================================================================#</span>
+
+    <span class="k">return</span> <span class="n">mu_new</span></div>
+
+<div class="viewcode-block" id="matrix_cal_for_subPower"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.matrix_cal_for_subPower">[docs]</a><span class="k">def</span> <span class="nf">matrix_cal_for_subPower</span><span class="p">(</span><span class="n">V0</span><span class="p">,</span> <span class="n">Y00</span><span class="p">,</span> <span class="n">Y01</span><span class="p">,</span> <span class="n">Y11</span><span class="p">,</span> <span class="n">V1_noload</span><span class="p">):</span>
+    <span class="n">diag_V0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">diag_V0</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">V0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">diag_V0</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">V0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">diag_V0</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">V0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">diag_V0</span> <span class="o">*</span> <span class="n">Y01</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Y11</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">diag_V0</span> <span class="o">*</span> <span class="n">Y00</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">V0</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">+</span> <span class="n">diag_V0</span> <span class="o">*</span> <span class="n">Y01</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">*</span> <span class="n">V1_noload</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
+    <span class="k">return</span><span class="p">[</span><span class="n">K</span><span class="p">,</span><span class="n">g</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="subPower_PQ"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.subPower_PQ">[docs]</a><span class="k">def</span> <span class="nf">subPower_PQ</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span> <span class="n">PQ_node</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+    <span class="n">diag_V1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">V1</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">V1</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">V1</span><span class="p">)):</span>
+        <span class="n">diag_V1</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">V1</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">diag_V1</span><span class="p">)</span>
+    <span class="n">MR</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">imag</span>
+    <span class="n">P0</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">real</span> <span class="o">+</span> <span class="p">(</span><span class="n">MR</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">PQ_node</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span> <span class="o">-</span> <span class="n">MI</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">PQ_node</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">Q0</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">imag</span> <span class="o">+</span> <span class="p">(</span><span class="n">MR</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">PQ_node</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span> <span class="o">+</span> <span class="n">MI</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">PQ_node</span><span class="o">.</span><span class="n">real</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span>
+
+    <span class="n">P0</span> <span class="o">=</span> <span class="n">P0</span><span class="o">/</span><span class="mi">1000</span>
+    <span class="n">Q0</span> <span class="o">=</span> <span class="n">Q0</span><span class="o">/</span><span class="mi">1000</span> <span class="c1"># convert to kW/kVar</span>
+
+    <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+    <span class="c1"># Power injection at substation/feeder head</span>
+    <span class="c1"># =================================================================================================#</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">P0</span><span class="p">,</span> <span class="n">Q0</span><span class="p">,</span> <span class="n">M</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="sub_costFun_gradient"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.sub_costFun_gradient">[docs]</a><span class="k">def</span> <span class="nf">sub_costFun_gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sub_ref</span><span class="p">,</span> <span class="n">coeff_sub</span><span class="p">,</span> <span class="n">sub_measure</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">node_withPV</span><span class="p">):</span>
+    <span class="n">grad_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">grad_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">grad_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+
+    <span class="n">MR</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">imag</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">node_withPV</span><span class="p">:</span>
+        <span class="n">grad_a</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">MR</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">node</span><span class="p">)]</span>
+        <span class="n">grad_b</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">MR</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">node</span><span class="p">)]</span>
+        <span class="n">grad_c</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">MR</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">node</span><span class="p">)]</span>
+
+        <span class="n">grad_a</span><span class="p">[</span><span class="n">count</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_withPV</span><span class="p">)]</span> <span class="o">=</span> <span class="n">MI</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">node</span><span class="p">)]</span>
+        <span class="n">grad_b</span><span class="p">[</span><span class="n">count</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_withPV</span><span class="p">)]</span> <span class="o">=</span> <span class="n">MI</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">node</span><span class="p">)]</span>
+        <span class="n">grad_c</span><span class="p">[</span><span class="n">count</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_withPV</span><span class="p">)]</span> <span class="o">=</span> <span class="n">MI</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">node</span><span class="p">)]</span>
+
+        <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">coeff_sub</span> <span class="o">*</span> <span class="p">((</span><span class="n">sub_measure</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">sub_ref</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span><span class="mi">1000</span><span class="o">*</span> <span class="n">grad_a</span> <span class="o">+</span> <span class="p">(</span><span class="n">sub_measure</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">sub_ref</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">grad_b</span>
+                       <span class="o">+</span> <span class="p">(</span><span class="n">sub_measure</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">sub_ref</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">grad_c</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">/</span><span class="mi">1000</span>
+
+    <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="projection"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.projection">[docs]</a><span class="k">def</span> <span class="nf">projection</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xmax</span><span class="p">,</span><span class="n">xmin</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">xmax</span><span class="p">[</span><span class="n">ii</span><span class="p">]:</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">xmax</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">xmin</span><span class="p">[</span><span class="n">ii</span><span class="p">]:</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">xmin</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">x</span></div>
+
+<div class="viewcode-block" id="DERMS"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.DERMS">[docs]</a><span class="k">class</span> <span class="nc">DERMS</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pvData</span><span class="p">,</span><span class="n">controlbus</span><span class="p">,</span><span class="n">controlelem</span><span class="p">,</span><span class="n">controlelem_limit</span><span class="p">,</span><span class="n">sub_node_names</span><span class="p">,</span><span class="n">sub_elem_names</span><span class="p">):</span>
+        <span class="c1"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+        <span class="c1"># PV_name: names of all PVs in the zone</span>
+        <span class="c1"># PV_size: sizes of all PVs in the zone</span>
+        <span class="c1"># PV_location: busnames of all PVs in the zone</span>
+        <span class="c1"># controlbus: names of all controlled nodes</span>
+        <span class="c1"># sub_node_names: names of all nodes in the zone</span>
+        <span class="c1"># sub_node_names &quot;include&quot; controlbus</span>
+        <span class="c1"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PV_name</span> <span class="o">=</span> <span class="n">pvData</span><span class="p">[</span><span class="s2">&quot;pvName&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PV_location</span> <span class="o">=</span> <span class="n">pvData</span><span class="p">[</span><span class="s2">&quot;pvLocation&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PV_size</span> <span class="o">=</span> <span class="n">pvData</span><span class="p">[</span><span class="s2">&quot;pvSize&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inverter_size</span> <span class="o">=</span> <span class="n">pvData</span><span class="p">[</span><span class="s2">&quot;inverterSize&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_bus</span> <span class="o">=</span> <span class="n">controlbus</span>
+
+        <span class="n">sub_node_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">ii</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">sub_node_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controlbus_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">sub_node_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ii</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">controlbus</span><span class="p">]</span> <span class="c1"># control bus index in the sub system (number)</span>
+        <span class="c1"># here</span>
+        <span class="n">PVbus_index</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">bus</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">PV_location</span><span class="p">:</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">PVbus_index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_node_names</span><span class="o">.</span><span class="n">index</span><span class="p">((</span><span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">temp</span><span class="p">[</span><span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
+
+        <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+        <span class="c1"># adding .1 .2 .3 following the number to recognize the three phases.</span>
+        <span class="c1"># =================================================================================================#</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PVbus_index</span> <span class="o">=</span> <span class="n">PVbus_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_elem</span> <span class="o">=</span> <span class="n">controlelem</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controlelem_limit</span> <span class="o">=</span> <span class="n">controlelem_limit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controlelem_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">sub_elem_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">controlelem</span><span class="p">]</span> <span class="c1"># control branches index in the sub system (number)</span>
+
+<div class="viewcode-block" id="DERMS.monitor"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.DERMS.monitor">[docs]</a>    <span class="k">def</span> <span class="nf">monitor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dss</span><span class="p">,</span> <span class="n">dssObjects</span><span class="p">,</span> <span class="n">PVSystem_1phase</span><span class="p">):</span>
+        <span class="n">PVpowers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">pv</span> <span class="ow">in</span> <span class="n">PVSystem_1phase</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">():</span>
+            <span class="n">nPhases</span> <span class="o">=</span> <span class="n">dssObjects</span><span class="p">[</span><span class="s2">&quot;Generators&quot;</span><span class="p">][</span><span class="n">pv</span><span class="p">]</span><span class="o">.</span><span class="n">GetValue</span><span class="p">(</span><span class="s2">&quot;phases&quot;</span><span class="p">)</span>
+            <span class="n">power</span> <span class="o">=</span> <span class="n">dssObjects</span><span class="p">[</span><span class="s2">&quot;Generators&quot;</span><span class="p">][</span><span class="n">pv</span><span class="p">]</span><span class="o">.</span><span class="n">GetValue</span><span class="p">(</span><span class="s2">&quot;Powers&quot;</span><span class="p">)</span>
+            <span class="n">PVpowers</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">sum</span><span class="p">(</span><span class="n">power</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">nPhases</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">power</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">nPhases</span><span class="p">])</span>
+        <span class="n">PVpowers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">PVpowers</span><span class="p">)</span>
+
+        <span class="n">Vmes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">bus</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_bus</span><span class="p">:</span>
+            <span class="n">busName</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">Vmag</span> <span class="o">=</span> <span class="n">dssObjects</span><span class="p">[</span><span class="s2">&quot;Buses&quot;</span><span class="p">][</span><span class="n">busName</span><span class="p">]</span><span class="o">.</span><span class="n">GetValue</span><span class="p">(</span><span class="s2">&quot;puVmagAngle&quot;</span><span class="p">)[::</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">allbusnode</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Bus</span><span class="o">.</span><span class="n">Nodes</span><span class="p">()</span>
+            <span class="n">phase</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">allbusnode</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">phase</span><span class="p">))</span>
+            <span class="n">Vnode</span> <span class="o">=</span> <span class="n">Vmag</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+            <span class="n">Vmes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Vnode</span><span class="p">)</span>
+
+        <span class="n">Imes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_elem</span><span class="p">:</span>
+            <span class="n">className</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;s&quot;</span>
+            <span class="n">I</span> <span class="o">=</span> <span class="n">dssObjects</span><span class="p">[</span><span class="n">className</span><span class="p">][</span><span class="n">elem</span><span class="p">]</span><span class="o">.</span><span class="n">GetValue</span><span class="p">(</span><span class="s2">&quot;CurrentsMagAng&quot;</span><span class="p">)[::</span><span class="mi">2</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span> <span class="c1">#TODO: Why is there a hardcoded [:3] ?</span>
+            <span class="n">Imes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">PV_location</span><span class="p">,</span><span class="n">PVpowers</span><span class="p">,</span><span class="n">Vmes</span><span class="p">,</span><span class="n">Imes</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="DERMS.control"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.html#PyDSS.pyPostprocessor.PostprocessScripts.DERMSOptimizer_helper_modules.opt_funcs.DERMS.control">[docs]</a>    <span class="k">def</span> <span class="nf">control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">linear_PF_coeff</span><span class="p">,</span> <span class="n">Options</span><span class="p">,</span><span class="n">stepsize</span><span class="p">,</span><span class="n">mu0</span><span class="p">,</span><span class="n">Vlimit</span><span class="p">,</span><span class="n">PVpower</span><span class="p">,</span><span class="n">Imes</span><span class="p">,</span><span class="n">Vmes</span><span class="p">,</span><span class="n">PV_Pmax_forecast</span><span class="p">):</span>
+        <span class="n">coeff_p</span> <span class="o">=</span> <span class="n">Options</span><span class="p">[</span><span class="s2">&quot;coeff_p&quot;</span><span class="p">]</span>
+        <span class="n">coeff_q</span> <span class="o">=</span> <span class="n">Options</span><span class="p">[</span><span class="s2">&quot;coeff_q&quot;</span><span class="p">]</span>
+
+        <span class="c1"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+        <span class="c1"># linear_PF_coeff is the linear power flow model coefficients for the zone, and linear power flow model</span>
+        <span class="c1">#                coefficients are the result vector from function &quot;linear_powerflow_model&quot;</span>
+        <span class="c1"># coeff_p, coeff_q are constant coefficients in PV cost function</span>
+        <span class="c1"># stepsize is a vector of stepsize constants</span>
+        <span class="c1"># mu0 is the dual variable from last time step: mu_Vmag_upper0, mu_Vmag_lower0, mu_I0</span>
+        <span class="c1"># Vlimit is the allowed voltage limit: Vupper and Vlower</span>
+        <span class="c1"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+        <span class="n">PVname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PV_name</span>
+        <span class="n">NPV</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">PVname</span><span class="p">)</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">NPV</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NPV</span><span class="p">):</span>
+            <span class="n">x0</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">PVpower</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># in kW</span>
+            <span class="n">x0</span><span class="p">[</span><span class="n">ii</span> <span class="o">+</span> <span class="n">NPV</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">PVpower</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># in kVar</span>
+
+        <span class="c1">#coeff_V_P = linear_PF_coeff[0]</span>
+        <span class="c1">#coeff_V_Q = linear_PF_coeff[1]</span>
+        <span class="c1">#coeff_Vm = linear_PF_coeff[2]</span>
+        <span class="n">coeff_Vmag_P</span> <span class="o">=</span> <span class="n">linear_PF_coeff</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">coeff_Vmag_Q</span> <span class="o">=</span> <span class="n">linear_PF_coeff</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+        <span class="c1">#coeff_Vmag_k = linear_PF_coeff[5]</span>
+        <span class="n">coeff_I_P</span> <span class="o">=</span> <span class="n">linear_PF_coeff</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="n">coeff_I_Q</span> <span class="o">=</span> <span class="n">linear_PF_coeff</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+        <span class="c1">#coeff_I_const = linear_PF_coeff[8]</span>
+        <span class="n">stepsize_xp</span> <span class="o">=</span> <span class="n">stepsize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">stepsize_xq</span> <span class="o">=</span> <span class="n">stepsize</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">stepsize_mu</span> <span class="o">=</span> <span class="n">stepsize</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">Vupper</span> <span class="o">=</span> <span class="n">Vlimit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">Vlower</span> <span class="o">=</span> <span class="n">Vlimit</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">controlbus_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlbus_index</span>
+        <span class="n">PVbus_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PVbus_index</span>
+        <span class="n">controlelem_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlelem_index</span>
+        <span class="n">PV_inverter_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverter_size</span>
+        <span class="n">Imes_limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlelem_limit</span>
+
+        <span class="n">mu_Vmag_upper0</span> <span class="o">=</span> <span class="n">mu0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">mu_Vmag_lower0</span> <span class="o">=</span> <span class="n">mu0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">mu_I0</span> <span class="o">=</span> <span class="n">mu0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">PVcost_fun_gradient</span> <span class="o">=</span> <span class="n">PV_costFun_gradient</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">coeff_p</span><span class="p">,</span> <span class="n">coeff_q</span><span class="p">,</span> <span class="n">PV_Pmax_forecast</span><span class="p">)</span>
+
+        <span class="n">Vmag_upper_gradient</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff_Vmag_P</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">([</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">controlbus_index</span><span class="p">],[</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">PVbus_index</span><span class="p">])]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">mu_Vmag_upper0</span><span class="p">),</span>
+                                              <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff_Vmag_Q</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">([</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">controlbus_index</span><span class="p">],</span> <span class="p">[</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">PVbus_index</span><span class="p">])]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">mu_Vmag_upper0</span><span class="p">)),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">Vmag_lower_gradient</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff_Vmag_P</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">([</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">controlbus_index</span><span class="p">],[</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">PVbus_index</span><span class="p">])]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">mu_Vmag_lower0</span><span class="p">),</span>
+                                              <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coeff_Vmag_Q</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">([</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">controlbus_index</span><span class="p">],[</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">PVbus_index</span><span class="p">])]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="n">mu_Vmag_lower0</span><span class="p">)),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">Vmag_gradient</span> <span class="o">=</span> <span class="n">Vmag_upper_gradient</span> <span class="o">-</span> <span class="n">Vmag_lower_gradient</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mu_I0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="p">:</span>
+            <span class="n">temp_real</span> <span class="o">=</span> <span class="n">mu_I0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Imes</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+            <span class="n">temp_imag</span> <span class="o">=</span> <span class="n">mu_I0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Imes</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
+
+            <span class="n">I_gradient_real</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+                <span class="n">coeff_I_P</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">([</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">controlelem_index</span><span class="p">],</span> <span class="p">[</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">PVbus_index</span><span class="p">])]</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span>
+                <span class="n">temp_real</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+                <span class="n">coeff_I_Q</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">([</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">controlelem_index</span><span class="p">],</span> <span class="p">[</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">PVbus_index</span><span class="p">])]</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span>
+                <span class="n">temp_real</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">I_gradient_imag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+                <span class="n">coeff_I_P</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">([</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">controlelem_index</span><span class="p">],</span> <span class="p">[</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">PVbus_index</span><span class="p">])]</span><span class="o">.</span><span class="n">imag</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span>
+                <span class="n">temp_imag</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+                <span class="n">coeff_I_Q</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">([</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">controlelem_index</span><span class="p">],</span> <span class="p">[</span><span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">PVbus_index</span><span class="p">])]</span><span class="o">.</span><span class="n">imag</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span>
+                <span class="n">temp_imag</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">I_gradient</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">I_gradient_real</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">I_gradient_imag</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">I_gradient</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">gradient</span> <span class="o">=</span> <span class="n">PVcost_fun_gradient</span> <span class="o">+</span> <span class="n">Vmag_gradient</span> <span class="o">+</span> <span class="n">I_gradient</span> <span class="o">/</span> <span class="mi">1000</span>
+
+        <span class="c1"># compute x1, mu1</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x0</span><span class="p">[:</span><span class="n">NPV</span><span class="p">]</span> <span class="o">-</span> <span class="n">stepsize_xp</span> <span class="o">*</span> <span class="n">gradient</span><span class="p">[:</span><span class="n">NPV</span><span class="p">],</span> <span class="n">x0</span><span class="p">[</span><span class="n">NPV</span><span class="p">:]</span> <span class="o">-</span> <span class="n">stepsize_xq</span> <span class="o">*</span> <span class="n">gradient</span><span class="p">[</span><span class="n">NPV</span><span class="p">:]])</span>
+        <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">Pmax_allPV</span><span class="p">,</span> <span class="n">Qmax_allPV</span><span class="p">]</span> <span class="o">=</span> <span class="n">project_PV</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">PV_Pmax_forecast</span><span class="p">,</span> <span class="n">PV_inverter_size</span><span class="p">)</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">x1</span><span class="p">])</span>
+
+        <span class="n">mu_Vmag_lower1</span> <span class="o">=</span> <span class="n">mu_Vmag_lower0</span> <span class="o">+</span> <span class="n">stepsize_mu</span> <span class="o">*</span> <span class="p">(</span><span class="n">Vlower</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Vmes</span><span class="p">))</span>
+        <span class="n">mu_Vmag_upper1</span> <span class="o">=</span> <span class="n">mu_Vmag_upper0</span> <span class="o">+</span> <span class="n">stepsize_mu</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Vmes</span><span class="p">)</span> <span class="o">-</span> <span class="n">Vupper</span><span class="p">)</span>
+        <span class="n">mu_Vmag_lower1</span> <span class="o">=</span> <span class="n">project_dualvariable</span><span class="p">(</span><span class="n">mu_Vmag_lower1</span><span class="p">)</span>
+        <span class="n">mu_Vmag_upper1</span> <span class="o">=</span> <span class="n">project_dualvariable</span><span class="p">(</span><span class="n">mu_Vmag_upper1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mu_I0</span><span class="p">:</span>
+            <span class="n">mu_I1</span> <span class="o">=</span> <span class="n">mu_I0</span> <span class="o">+</span> <span class="n">stepsize_mu</span> <span class="o">/</span> <span class="mi">300</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Imes</span><span class="p">,</span> <span class="n">Imes_limit</span><span class="p">))))</span>
+            <span class="n">mu_I1</span> <span class="o">=</span> <span class="n">project_dualvariable</span><span class="p">(</span><span class="n">mu_I1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mu_I1</span> <span class="o">=</span> <span class="n">mu_I0</span>
+        <span class="n">mu1</span> <span class="o">=</span> <span class="p">[</span><span class="n">mu_Vmag_upper1</span><span class="p">,</span><span class="n">mu_Vmag_lower1</span><span class="p">,</span><span class="n">mu_I1</span><span class="p">]</span>
+        <span class="c1"># =========================================Yiyun&#39;s Notes===========================================#</span>
+        <span class="c1"># Each time of calling DERMS.control, it is a one step update of PV real and reactive power outputs</span>
+        <span class="c1"># =================================================================================================#</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">x1</span><span class="p">,</span><span class="n">mu1</span><span class="p">]</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

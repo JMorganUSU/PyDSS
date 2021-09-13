@@ -1,0 +1,1005 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyDSS.api.src.web.handler &mdash; PyDSS 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link href="../../../../../_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> PyDSS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Sample%20TOML%20files.html">Default simulation settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Sample%20TOML%20files.html#default-visualization-settings">Default visualization settings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorial.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorial.html#create-a-new-project">Create a new project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#exporting-data">Exporting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#pre-filtering-export-data">Pre-filtering Export Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorial.html#run-a-project">Run a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorial.html#analyze-results">Analyze results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#load-element-classes-and-properties">Load element classes and properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#read-a-dataframe-for-one-element">Read a dataframe for one element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#read-a-dataframe-for-one-element-with-a-specific-option">Read a dataframe for one element with a specific option</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#read-a-dataframe-for-one-element-with-an-option-matching-a-regular-expression">Read a dataframe for one element with an option matching a regular expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#read-the-total-value-for-a-property-stored-with-store-values-type-sum">Read the total value for a property stored with <code class="docutils literal notranslate"><span class="pre">store_values_type</span> <span class="pre">=</span> <span class="pre">&quot;sum&quot;</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#find-out-all-options-available-for-a-property">Find out all options available for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#find-out-what-option-values-are-present-for-a-property">Find out what option values are present for a property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#read-a-dataframe-for-all-elements">Read a dataframe for all elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorial.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tutorial.html#estimate-space-required-by-pydss-simulation">Estimate space required by PyDSS simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Project%20management.html">Improved project management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Result%20management.html">Enhanced result export features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Dynamic%20visualization%20capabilities.html">Dynamic visualization capabilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html">Frequency sweep plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#gis-plot">GIS plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#histogram-plot">Histogram plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#voltage-sag-plot">Voltage sag plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#time-series-plot">Time series plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#voltage-current-heatmap-plot">Voltage / Current heatmap plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Dynamic%20plots.html#xy-plots">XY plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Creating%20custom%20dynamic%20plots.html">Development of custom dynamic plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Extended%20controls%20library.html">Extended controls library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../Creating%20custom%20controls.html">Extending PyDSS controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../External%20interfaces%20for%20cosimulation.html">External PyDSS interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../interfaces.html">The socket interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../interfaces.html#the-helics-interface">The HELICS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../interfaces.html#the-api-interface">The API interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Automated%20comparison%20of%20scenarios.html">Automated scenario comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../reports.html">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../reports.html#global-settings">Global settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../reports.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../reports.html#granularity">Granularity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../reports.html#export-parameters">Export Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../reports.html#output-data">Output Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../reports.html#adding-new-reports">Adding New Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../reports.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../hdf-data-format.html">HDF Data Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../hdf-data-format.html#layout">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../hdf-data-format.html#common-metadata">Common Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../hdf-data-format.html#dataset-metadata">Dataset Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../hdf-data-format.html#attributes-per-dataset">Attributes per dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../hdf-data-format.html#metadata-datasets-per-dataset">Metadata datasets per dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../hdf-data-format.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../PyDSS.html">PyDSS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../PyDSS/modules.html">PyDSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html">PyDSS package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.Extensions.html">PyDSS.Extensions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.ProfileManager.html">PyDSS.ProfileManager package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.api.html">PyDSS.api package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.cli.html">PyDSS.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.defaults.html">PyDSS.defaults package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.modes.html">PyDSS.modes package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.pyControllers.html">PyDSS.pyControllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.pyPlots.html">PyDSS.pyPlots package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.pyPostprocessor.html">PyDSS.pyPostprocessor package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.reports.html">PyDSS.reports package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../PyDSS/PyDSS.utils.html">PyDSS.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.NetworkModifier">PyDSS.NetworkModifier module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.ResultData">PyDSS.ResultData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.SolveMode">PyDSS.SolveMode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.common">PyDSS.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.config_data">PyDSS.config_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dataset_buffer">PyDSS.dataset_buffer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssBus">PyDSS.dssBus module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssCircuit">PyDSS.dssCircuit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssElement">PyDSS.dssElement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssElementFactory">PyDSS.dssElementFactory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssInstance">PyDSS.dssInstance module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssObjectBase">PyDSS.dssObjectBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.dssTransformer">PyDSS.dssTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.element_fields">PyDSS.element_fields module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.element_options">PyDSS.element_options module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.exceptions">PyDSS.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.export_list_reader">PyDSS.export_list_reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.helics_interface">PyDSS.helics_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.loggers">PyDSS.loggers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.metrics">PyDSS.metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.naerm">PyDSS.naerm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.node_voltage_metrics">PyDSS.node_voltage_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyContrReader">PyDSS.pyContrReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyDSS">PyDSS.pyDSS module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyLogger">PyDSS.pyLogger module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyPlotReader">PyDSS.pyPlotReader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pyResults">PyDSS.pyResults module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_fs_interface">PyDSS.pydss_fs_interface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_project">PyDSS.pydss_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.pydss_results">PyDSS.pydss_results module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.registry">PyDSS.registry module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.storage_filters">PyDSS.storage_filters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.thermal_metrics">PyDSS.thermal_metrics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.unitDefinations">PyDSS.unitDefinations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.valiate_settings">PyDSS.valiate_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS.value_storage">PyDSS.value_storage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../PyDSS/PyDSS.html#module-PyDSS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">PyDSS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>PyDSS.api.src.web.handler</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PyDSS.api.src.web.handler</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+<span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">web</span>
+<span class="kn">from</span> <span class="nn">PyDSS.api.src.app.pydss</span> <span class="kn">import</span> <span class="n">PyDSS</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Event</span><span class="p">,</span> <span class="n">cpu_count</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<span class="kn">from</span> <span class="nn">PyDSS.api.src.web.parser</span> <span class="kn">import</span> <span class="n">variable_decode</span><span class="p">,</span> <span class="n">bytestream_decode</span>
+<span class="kn">from</span> <span class="nn">PyDSS.pydss_project</span> <span class="kn">import</span> <span class="n">PyDssProject</span><span class="p">,</span> <span class="n">PyDssScenario</span><span class="p">,</span> <span class="n">ControllerType</span><span class="p">,</span> <span class="n">VisualizationType</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Handler"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.api.src.web.html#PyDSS.api.src.web.handler.Handler">[docs]</a><span class="k">class</span> <span class="nc">Handler</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Handlers for web server. &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Constructor for PyDSS handler. &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initializing Handler ....&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Initializing pydss_instances dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="c1"># Event flag to control shutdown of background tasks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum parallel processes: </span><span class="si">{</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Handler.get_pydss_project_info"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.api.src.web.html#PyDSS.api.src.web.handler.Handler.get_pydss_project_info">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pydss_project_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ---</span>
+<span class="sd">        summary: Returns a dictionary of valid project and scenarios in the provided path</span>
+<span class="sd">        tags:</span>
+<span class="sd">         - PyDSS project</span>
+<span class="sd">        parameters:</span>
+<span class="sd">         - name: path</span>
+<span class="sd">           in: query</span>
+<span class="sd">           required: true</span>
+<span class="sd">           schema:</span>
+<span class="sd">              type: string</span>
+<span class="sd">              example: C:/Users/alatif/Desktop/PyDSS_2.0/PyDSS/examples</span>
+<span class="sd">        responses:</span>
+<span class="sd">         &#39;200&#39;:</span>
+<span class="sd">           description: Successfully retrieved project information</span>
+<span class="sd">           content:</span>
+<span class="sd">              application/json:</span>
+<span class="sd">                schema:</span>
+<span class="sd">                    type: object</span>
+<span class="sd">                examples:</span>
+<span class="sd">                    get_instance_status:</span>
+<span class="sd">                        value:</span>
+<span class="sd">                            Status: 200</span>
+<span class="sd">                            Message: PyDSS instance with the provided UUID is currently running</span>
+<span class="sd">                            UUID: 96c21e00-cd3c-4943-a914-14451f5f7ab6</span>
+<span class="sd">                            &quot;Data&quot;: {&#39;Project1&#39; : {&#39;Scenario1&#39;, &#39;Scenario2&#39;}, &#39;Project2&#39; : {&#39;Scenario1&#39;}}</span>
+<span class="sd">         &#39;406&#39;:</span>
+<span class="sd">           description: Provided path does not exist</span>
+<span class="sd">           content:</span>
+<span class="sd">              application/json:</span>
+<span class="sd">                schema:</span>
+<span class="sd">                    type: object</span>
+<span class="sd">                examples:</span>
+<span class="sd">                    get_instance_status:</span>
+<span class="sd">                        value:</span>
+<span class="sd">                            Status: 406</span>
+<span class="sd">                            Message: Provided path does not exist</span>
+<span class="sd">                            UUID: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exploring </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> for valid projects&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span>
+                <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="mi">404</span><span class="p">,</span>
+                <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Provided path does not exist&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;UUID&quot;</span><span class="p">:</span> <span class="kc">None</span>
+            <span class="p">})</span>
+
+        <span class="n">subfolders</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">path</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">scandir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()]</span>
+        <span class="n">projects</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="n">subfolders</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pydss_project</span> <span class="o">=</span> <span class="n">PyDssProject</span><span class="o">.</span><span class="n">load_project</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+                <span class="n">projects</span><span class="p">[</span><span class="n">pydss_project</span><span class="o">.</span><span class="n">_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pydss_project</span><span class="o">.</span><span class="n">scenarios</span><span class="p">]</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">projects</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span><span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+                                      <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> valid projects found&quot;</span><span class="p">,</span>
+                                      <span class="s2">&quot;UUID&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="s2">&quot;Data&quot;</span><span class="p">:</span> <span class="n">projects</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span><span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="mi">404</span><span class="p">,</span>
+                               <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;No valid PyDSS project in provided base path&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot;UUID&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">})</span></div>
+
+<div class="viewcode-block" id="Handler.post_pydss_create"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.api.src.web.html#PyDSS.api.src.web.handler.Handler.post_pydss_create">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">post_pydss_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ---</span>
+<span class="sd">        summary: Creates a new project for PyDSS (User uploads a zipped OpenDSS model)</span>
+<span class="sd">        tags:</span>
+<span class="sd">         - PyDSS project</span>
+<span class="sd">        requestBody:</span>
+<span class="sd">            content:</span>
+<span class="sd">                multipart/form-data:</span>
+<span class="sd">                    schema:</span>
+<span class="sd">                      type: object</span>
+<span class="sd">                      properties:</span>
+<span class="sd">                        master_file:</span>
+<span class="sd">                          type: string</span>
+<span class="sd">                          example: Master_Spohn_existing_VV.dss</span>
+<span class="sd">                        project:</span>
+<span class="sd">                          type: string</span>
+<span class="sd">                          example: test_project</span>
+<span class="sd">                        scenarios:</span>
+<span class="sd">                          type: string</span>
+<span class="sd">                          description: comma separated list of PyDSS scenarios to be created</span>
+<span class="sd">                          example: base_case,pv_scenario</span>
+<span class="sd">                        controller_types:</span>
+<span class="sd">                          type: string</span>
+<span class="sd">                          description: comma separated list of PyDSS controller names</span>
+<span class="sd">                          example: PvController,StorageController</span>
+<span class="sd">                        visualization_types:</span>
+<span class="sd">                          type: string</span>
+<span class="sd">                          description: comma separated list of PyDSS plot names</span>
+<span class="sd">                          example: Histogram,TimeSeries</span>
+<span class="sd">                        fileName:</span>
+<span class="sd">                          type: string</span>
+<span class="sd">                          format: binary</span>
+<span class="sd">        responses:</span>
+<span class="sd">         &#39;200&#39;:</span>
+<span class="sd">           description: Successfully retrieved project information</span>
+<span class="sd">           content:</span>
+<span class="sd">              application/json:</span>
+<span class="sd">                schema:</span>
+<span class="sd">                    type: object</span>
+<span class="sd">                examples:</span>
+<span class="sd">                    get_instance_status:</span>
+<span class="sd">                        value:</span>
+<span class="sd">                            Status: 200</span>
+<span class="sd">                            Message: PyDSS project created</span>
+<span class="sd">                            UUID: None</span>
+<span class="sd">         &#39;403&#39;:</span>
+<span class="sd">           description: Provided path does not exist</span>
+<span class="sd">           content:</span>
+<span class="sd">              application/json:</span>
+<span class="sd">                schema:</span>
+<span class="sd">                    type: object</span>
+<span class="sd">                examples:</span>
+<span class="sd">                    get_instance_status:</span>
+<span class="sd">                        value:</span>
+<span class="sd">                            Status: 403</span>
+<span class="sd">                            Message: User does not have access to delete folders</span>
+<span class="sd">                            UUID: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
+        <span class="n">examples_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;C:/Users/alatif/Desktop/PyDSS_2.0/PyDSS/&quot;</span><span class="p">,</span> <span class="s1">&#39;examples&#39;</span><span class="p">)</span>
+        <span class="n">unzip_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">examples_path</span><span class="p">,</span> <span class="s2">&quot;uploaded_opendss_project&quot;</span><span class="p">)</span>
+        <span class="n">zip_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">examples_path</span><span class="p">,</span> <span class="s2">&quot;uploaded_opendss_project.zip&quot;</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">zip_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+                <span class="n">chunk</span> <span class="o">=</span> <span class="k">await</span> <span class="n">request</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">chunk</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">+=</span> <span class="n">chunk</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">chunk</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">bytestream_decode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">unzip_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zipObj</span><span class="p">:</span>
+            <span class="n">zipObj</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">unzip_path</span><span class="p">)</span>
+
+        <span class="n">controller_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">ControllerType</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;controller_types&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span>
+        <span class="n">visualization_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">VisualizationType</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;visualization_types&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span>
+
+        <span class="n">scenarios</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">PyDssScenario</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
+                <span class="n">controller_types</span><span class="o">=</span><span class="n">controller_types</span><span class="p">,</span>
+                <span class="n">visualization_types</span><span class="o">=</span><span class="n">visualization_types</span><span class="p">,</span>
+            <span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;scenarios&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="n">PyDssProject</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">examples_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;project&#39;</span><span class="p">],</span> <span class="n">scenarios</span><span class="o">=</span><span class="n">scenarios</span><span class="p">,</span>
+                                    <span class="n">opendss_project_folder</span><span class="o">=</span><span class="n">unzip_path</span><span class="p">,</span> <span class="n">master_dss_file</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;master_file&#39;</span><span class="p">])</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">unzip_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">zip_path</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">zip_path</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span>
+                <span class="s1">&#39;Status&#39;</span><span class="p">:</span> <span class="mi">403</span><span class="p">,</span>
+                <span class="s1">&#39;Message&#39;</span><span class="p">:</span> <span class="s1">&#39;User does not have access to delete folders&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;UUID&#39;</span><span class="p">:</span> <span class="kc">None</span>
+            <span class="p">})</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Status&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+                  <span class="s1">&#39;Message&#39;</span><span class="p">:</span> <span class="s1">&#39;PyDSS project created&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;UUID&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+
+        <span class="c1"># name, scenarios, simulation_config = None, options = None,</span>
+        <span class="c1"># simulation_file = SIMULATION_SETTINGS_FILENAME, opendss_project_folder = None,</span>
+        <span class="c1"># master_dss_file = OPENDSS_MASTER_FILENAME</span>
+
+        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Handler.post_pydss_project"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.api.src.web.html#PyDSS.api.src.web.handler.Handler.post_pydss_project">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">post_pydss_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Handler.get_pydss_project"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.api.src.web.html#PyDSS.api.src.web.handler.Handler.get_pydss_project">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pydss_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Handler.post_pydss"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.api.src.web.html#PyDSS.api.src.web.handler.Handler.post_pydss">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">post_pydss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                ---</span>
+<span class="sd">                summary: Creates an instance of PyDSS and runs the simulation</span>
+<span class="sd">                tags:</span>
+<span class="sd">                 - Simulation</span>
+<span class="sd">                requestBody:</span>
+<span class="sd">                    content:</span>
+<span class="sd">                        application/json:</span>
+<span class="sd">                            schema:</span>
+<span class="sd">                                type: object</span>
+<span class="sd">                                properties:</span>
+<span class="sd">                                    parameters:</span>
+<span class="sd">                                      type: object</span>
+<span class="sd">                            examples:</span>
+<span class="sd">                                    Example 1:</span>
+<span class="sd">                                        value:</span>
+<span class="sd">                                            parameters:</span>
+<span class="sd">                                                Start Year: 2017</span>
+<span class="sd">                                                Start Day: 1</span>
+<span class="sd">                                                Start Time (min): 0</span>
+<span class="sd">                                                End Day: 1</span>
+<span class="sd">                                                End Time (min): 1439</span>
+<span class="sd">                                                Date offset: 0</span>
+<span class="sd">                                                Step resolution (sec): 900</span>
+<span class="sd">                                                Max Control Iterations: 50</span>
+<span class="sd">                                                Error tolerance: 0.001</span>
+<span class="sd">                                                Control mode: Static</span>
+<span class="sd">                                                Simulation Type: QSTS</span>
+<span class="sd">                                                Project Path: &quot;C:/Users/alatif/Desktop/PyDSS_2.0/PyDSS/examples&quot;</span>
+<span class="sd">                                                Active Project: custom_contols</span>
+<span class="sd">                                                Active Scenario: base_case</span>
+<span class="sd">                                                DSS File: Master_Spohn_existing_VV.dss</span>
+<span class="sd">                                                Co-simulation Mode: false</span>
+<span class="sd">                                                Log Results: false</span>
+<span class="sd">                                                Export Data Tables: true</span>
+<span class="sd">                                                Export Data In Memory: true</span>
+<span class="sd">                                                Federate name: PyDSS_x</span>
+<span class="sd">                responses:</span>
+<span class="sd">                 &#39;200&#39;:</span>
+<span class="sd">                   description: Successfully retrieved project information</span>
+<span class="sd">                   content:</span>
+<span class="sd">                      application/json:</span>
+<span class="sd">                        schema:</span>
+<span class="sd">                            type: object</span>
+<span class="sd">                        examples:</span>
+<span class="sd">                            get_instance_status:</span>
+<span class="sd">                                value:</span>
+<span class="sd">                                    Status: 200</span>
+<span class="sd">                                    Message: Starting a PyDSS instance</span>
+<span class="sd">                                    UUID: 96c21e00-cd3c-4943-a914-14451f5f7ab6</span>
+<span class="sd">                 &#39;500&#39;:</span>
+<span class="sd">                   description: Provided path does not exist</span>
+<span class="sd">                   content:</span>
+<span class="sd">                      application/json:</span>
+<span class="sd">                        schema:</span>
+<span class="sd">                            type: object</span>
+<span class="sd">                        examples:</span>
+<span class="sd">                            get_instance_status:</span>
+<span class="sd">                                value:</span>
+<span class="sd">                                    Status: 500</span>
+<span class="sd">                                    Message: Failed to create a PyDSS instance</span>
+<span class="sd">                                    UUID: None</span>
+<span class="sd">                &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running command :</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">pydss_uuid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+
+        <span class="c1"># Create a process for PyDSS instance</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">PyDSS</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">pydss_uuid</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+        <span class="c1"># Store queue and process</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span><span class="p">[</span><span class="n">pydss_uuid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;queue&quot;</span><span class="p">:</span> <span class="n">q</span><span class="p">,</span> <span class="s2">&quot;process&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">}</span>
+        <span class="c1"># Catching data coming from PyDSS</span>
+        <span class="n">pydss_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post_put_background_task</span><span class="p">,</span> <span class="n">pydss_uuid</span><span class="p">)</span>
+        <span class="n">pydss_t</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_post_put_callback</span><span class="p">)</span>
+
+        <span class="c1"># Start process for pydss</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="c1"># Return a message to webclient</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Status&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+                  <span class="s1">&#39;Message&#39;</span><span class="p">:</span> <span class="s1">&#39;Starting a PyDSS instance&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;UUID&#39;</span><span class="p">:</span> <span class="n">pydss_uuid</span><span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Handler.put_pydss"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.api.src.web.html#PyDSS.api.src.web.handler.Handler.put_pydss">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">put_pydss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Running PyDSS app&quot;&quot;&quot;</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        ---</span>
+<span class="s2">        summary: Run a command on an active instance of PyDSS</span>
+<span class="s2">        tags:</span>
+<span class="s2">         - Simulation</span>
+
+<span class="s2">        requestBody:</span>
+<span class="s2">            content:</span>
+<span class="s2">                application/json:</span>
+<span class="s2">                    schema:</span>
+<span class="s2">                      type: object</span>
+<span class="s2">                      properties:</span>
+<span class="s2">                        uuid:</span>
+<span class="s2">                          type: string</span>
+<span class="s2">                          format: UUID</span>
+<span class="s2">                          example: 96c21e00-cd3c-4943-a914-14451f5f7ab6</span>
+<span class="s2">                        command:</span>
+<span class="s2">                          type: string</span>
+<span class="s2">                          example: initialize</span>
+<span class="s2">                        parameters:</span>
+<span class="s2">                          type: object</span>
+<span class="s2">                    examples:</span>
+<span class="s2">                        Example_1:</span>
+<span class="s2">                            value:</span>
+<span class="s2">                                UUID : 96c21e00-cd3c-4943-a914-14451f5f7ab6</span>
+<span class="s2">                                command: run</span>
+<span class="s2">                                parameters: </span><span class="si">{}</span><span class="s2"></span>
+<span class="s2">        responses:</span>
+<span class="s2">         &#39;200&#39;:</span>
+<span class="s2">           description: Successfully retrieved project information</span>
+<span class="s2">           content:</span>
+<span class="s2">              application/json:</span>
+<span class="s2">                schema:</span>
+<span class="s2">                    type: object</span>
+<span class="s2">                examples:</span>
+<span class="s2">                    get_instance_status:</span>
+<span class="s2">                        value:</span>
+<span class="s2">                            Status: 200</span>
+<span class="s2">                            Message: Command submitted, awaiting response </span>
+<span class="s2">                            UUID: 96c21e00-cd3c-4943-a914-14451f5f7ab6</span>
+<span class="s2">         &#39;401&#39;:</span>
+<span class="s2">           description: Provided path does not exist</span>
+<span class="s2">           content:</span>
+<span class="s2">              application/json:</span>
+<span class="s2">                schema:</span>
+<span class="s2">                    type: object</span>
+<span class="s2">                examples:</span>
+<span class="s2">                    get_instance_status:</span>
+<span class="s2">                        value:</span>
+<span class="s2">                            Status: 401</span>
+<span class="s2">                            Message: Please provide a command and parameters</span>
+<span class="s2">                            UUID: None</span>
+<span class="s2">         &#39;403&#39;:</span>
+<span class="s2">           description: Provided path does not exist</span>
+<span class="s2">           content:</span>
+<span class="s2">              application/json:</span>
+<span class="s2">                schema:</span>
+<span class="s2">                    type: object</span>
+<span class="s2">                examples:</span>
+<span class="s2">                    get_instance_status:</span>
+<span class="s2">                        value:</span>
+<span class="s2">                            Status: 403</span>
+<span class="s2">                            Message: Provided UUID is not valid PyDSS instance id</span>
+<span class="s2">                            UUID: None</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running command :</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;command&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">or</span> <span class="s2">&quot;parameters&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Please provide a command and parameters&quot;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span><span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span>
+                                      <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="p">,</span>
+                                      <span class="s2">&quot;UUID&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">})</span>
+
+        <span class="n">pydss_uuid</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_uuid</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">pydss_uuid</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running command </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;command&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> on PyDSS instance </span><span class="si">{</span><span class="n">pydss_uuid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">pydss_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post_put_background_task</span><span class="p">,</span> <span class="n">pydss_uuid</span><span class="p">)</span>
+            <span class="n">pydss_t</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_post_put_callback</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span><span class="p">[</span><span class="n">pydss_uuid</span><span class="p">][</span><span class="s1">&#39;queue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+                      <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;command&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> command submitted, awaiting response &quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;UUID&quot;</span><span class="p">:</span> <span class="n">pydss_uuid</span>
+                      <span class="p">}</span>
+            <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;UUID=</span><span class="si">{</span><span class="n">pydss_uuid</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span>
+
+            <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="mi">403</span><span class="p">,</span>
+                      <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pydss_uuid</span><span class="si">}</span><span class="s2"> is not valid PyDSS instance id &quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;UUID&quot;</span><span class="p">:</span> <span class="n">pydss_uuid</span>
+                      <span class="p">}</span>
+            <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Handler.delete_pydss"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.api.src.web.html#PyDSS.api.src.web.handler.Handler.delete_pydss">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_pydss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ---</span>
+<span class="sd">        summary: Deletes an active instance of PyDSS</span>
+<span class="sd">        tags:</span>
+<span class="sd">         - Simulation</span>
+<span class="sd">        parameters:</span>
+<span class="sd">          - name: uuid</span>
+<span class="sd">            in: path</span>
+<span class="sd">            required: true</span>
+<span class="sd">            schema:</span>
+<span class="sd">              type: string</span>
+<span class="sd">              format: uuid</span>
+<span class="sd">              example: 96c21e00-cd3c-4943-a914-14451f5f7ab6</span>
+<span class="sd">        responses:</span>
+<span class="sd">         &#39;200&#39;:</span>
+<span class="sd">           description: Successfully retrieved project information</span>
+<span class="sd">           content:</span>
+<span class="sd">              application/json:</span>
+<span class="sd">                schema:</span>
+<span class="sd">                    type: object</span>
+<span class="sd">                examples:</span>
+<span class="sd">                    get_instance_status:</span>
+<span class="sd">                        value:</span>
+<span class="sd">                            Status: 200</span>
+<span class="sd">                            Message: Successfully deleted a PyDSS instance</span>
+<span class="sd">                            UUID: 96c21e00-cd3c-4943-a914-14451f5f7ab6</span>
+<span class="sd">         &#39;403&#39;:</span>
+<span class="sd">           description: Provided path does not exist</span>
+<span class="sd">           content:</span>
+<span class="sd">              application/json:</span>
+<span class="sd">                schema:</span>
+<span class="sd">                    type: object</span>
+<span class="sd">                examples:</span>
+<span class="sd">                    get_instance_status:</span>
+<span class="sd">                        value:</span>
+<span class="sd">                            Status: 403</span>
+<span class="sd">                            Message: Error closing PyDSS instance</span>
+<span class="sd">                            UUID: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Close request submitted: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;UUID&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">pydss_uuid</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;UUID&quot;</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">pydss_uuid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;UUID=</span><span class="si">{</span><span class="n">pydss_uuid</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pydss_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_background_task</span><span class="p">,</span> <span class="n">pydss_uuid</span><span class="p">)</span>
+                <span class="n">pydss_t</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delete_callback</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span><span class="p">[</span><span class="n">pydss_uuid</span><span class="p">][</span><span class="s2">&quot;queue&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">&quot;END&quot;</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span>
+                    <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+                    <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Successfully deleted a PyDSS instance&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;UUID&quot;</span><span class="p">:</span> <span class="n">pydss_uuid</span>
+                <span class="p">})</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error closing PyDSS instance </span><span class="si">{</span><span class="n">pydss_uuid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span>
+                <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="mi">403</span><span class="p">,</span>
+                <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Error closing PyDSS instance&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;UUID&quot;</span><span class="p">:</span> <span class="kc">None</span>
+            <span class="p">})</span></div>
+
+<div class="viewcode-block" id="Handler.get_instance_uuids"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.api.src.web.html#PyDSS.api.src.web.handler.Handler.get_instance_uuids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_instance_uuids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ---</span>
+<span class="sd">        summary: Returns UUIDs of all the instances currently running on the server</span>
+<span class="sd">        tags:</span>
+<span class="sd">         - simulation status</span>
+<span class="sd">        responses:</span>
+<span class="sd">         &#39;200&#39;:</span>
+<span class="sd">           description: UUIDs of all currently running PyDSS instances have been returned</span>
+<span class="sd">           content:</span>
+<span class="sd">              application/json:</span>
+<span class="sd">                schema:</span>
+<span class="sd">                    type: object</span>
+<span class="sd">                examples:</span>
+<span class="sd">                    get_instance_status:</span>
+<span class="sd">                        value:</span>
+<span class="sd">                            Status: 200</span>
+<span class="sd">                            Message: 2 PyDSS instances currently running</span>
+<span class="sd">                            UUID: []</span>
+<span class="sd">         &#39;204&#39;:</span>
+<span class="sd">           description: No active PyDSS instance found</span>
+<span class="sd">           content:</span>
+<span class="sd">              application/json:</span>
+<span class="sd">                schema:</span>
+<span class="sd">                    type: object</span>
+<span class="sd">                examples:</span>
+<span class="sd">                    get_instance_status:</span>
+<span class="sd">                        value:</span>
+<span class="sd">                            Status: 204</span>
+<span class="sd">                            Message: No PyDSS instance currently running</span>
+<span class="sd">                            UUID: [&quot;96c21e00-cd3c-4943-a914-14451f5f7ab6&quot;, &quot;96c21e045-cd6c-8394-a914-14451f5f7ab6&quot;]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">uuids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">uuids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span>
+                <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+                <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">uuids</span><span class="p">)</span><span class="si">}</span><span class="s2"> instances currently running&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Instances&quot;</span><span class="p">:</span> <span class="n">uuids</span>
+            <span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span>
+                <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="mi">204</span><span class="p">,</span>
+                <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="s2">&quot;No PyDSS instance currently running&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Instances&quot;</span><span class="p">:</span> <span class="n">uuids</span>
+            <span class="p">})</span></div>
+
+<div class="viewcode-block" id="Handler.get_instance_status"><a class="viewcode-back" href="../../../../../PyDSS/PyDSS.api.src.web.html#PyDSS.api.src.web.handler.Handler.get_instance_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_instance_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ---</span>
+<span class="sd">        summary: Returns states of process of with UUID matching the passed UUID</span>
+<span class="sd">        tags:</span>
+<span class="sd">         - simulation status</span>
+<span class="sd">        parameters:</span>
+<span class="sd">          - name: uuid</span>
+<span class="sd">            in: path</span>
+<span class="sd">            required: true</span>
+<span class="sd">            schema:</span>
+<span class="sd">              type: string</span>
+<span class="sd">              format: uuid</span>
+<span class="sd">              example: 96c21e00-cd3c-4943-a914-14451f5f7ab6</span>
+<span class="sd">        responses:</span>
+<span class="sd">         &#39;200&#39;:</span>
+<span class="sd">           description: PyDSS instance with the provided UUID is currently running</span>
+<span class="sd">           content:</span>
+<span class="sd">              application/json:</span>
+<span class="sd">                schema:</span>
+<span class="sd">                    type: object</span>
+<span class="sd">                examples:</span>
+<span class="sd">                    get_instance_status:</span>
+<span class="sd">                        value:</span>
+<span class="sd">                            Status: 200</span>
+<span class="sd">                            Message: PyDSS instance with the provided UUID is currently running</span>
+<span class="sd">                            UUID: 96c21e00-cd3c-4943-a914-14451f5f7ab6</span>
+<span class="sd">         &#39;204&#39;:</span>
+<span class="sd">           description: PyDSS instance with the provided UUID does not exist</span>
+<span class="sd">           content:</span>
+<span class="sd">              application/json:</span>
+<span class="sd">                schema:</span>
+<span class="sd">                    type: object</span>
+<span class="sd">                examples:</span>
+<span class="sd">                    get_instance_status:</span>
+<span class="sd">                        value:</span>
+<span class="sd">                            Status: 204</span>
+<span class="sd">                            Message: PyDSS instance with the provided UUID does not exist</span>
+<span class="sd">                            UUID: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">uuid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;204&quot;</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;PyDSS instance with the provided UUID does not exist&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;200&quot;</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;PyDSS instance with the provided UUID is currently running&quot;</span>
+
+        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">json_response</span><span class="p">({</span>
+            <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="n">status</span><span class="p">,</span>
+            <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="p">,</span>
+            <span class="s2">&quot;UUID&quot;</span><span class="p">:</span> <span class="n">uuid</span>
+        <span class="p">})</span></div>
+
+    <span class="k">def</span> <span class="nf">_post_put_background_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pydss_uuid</span><span class="p">):</span>
+
+        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span><span class="p">[</span><span class="n">pydss_uuid</span><span class="p">][</span><span class="s2">&quot;queue&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_post_put_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">return_value</span><span class="p">):</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">return_value</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="s2">&quot;UUID&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">pydss_uuid</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;UUID&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">pydss_uuid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="n">pydss_uuid</span>
+
+    <span class="k">def</span> <span class="nf">_delete_background_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pydss_uuid</span><span class="p">):</span>
+
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span><span class="p">[</span><span class="n">pydss_uuid</span><span class="p">][</span><span class="s2">&quot;process&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+            <span class="k">continue</span>
+
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">pydss_instances</span><span class="p">[</span><span class="n">pydss_uuid</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;Status&quot;</span><span class="p">:</span> <span class="s2">&quot;Success&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Message&quot;</span><span class="p">:</span> <span class="s2">&quot;PyDSS instance closed&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;UUID&quot;</span><span class="p">:</span> <span class="n">pydss_uuid</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_delete_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">return_value</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">return_value</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, Aadil Latif.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

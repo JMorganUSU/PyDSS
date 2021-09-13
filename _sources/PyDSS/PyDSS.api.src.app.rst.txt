@@ -1,0 +1,61 @@
+PyDSS.api.src.app package
+=========================
+
+Submodules
+----------
+
+PyDSS.api.src.app.DataWriter module
+-----------------------------------
+
+.. automodule:: PyDSS.api.src.app.DataWriter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.api.src.app.HDF5 module
+-----------------------------
+
+.. automodule:: PyDSS.api.src.app.HDF5
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.api.src.app.JSON\_writer module
+-------------------------------------
+
+.. automodule:: PyDSS.api.src.app.JSON_writer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.api.src.app.Tester module
+-------------------------------
+
+.. automodule:: PyDSS.api.src.app.Tester
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.api.src.app.arrow\_writer module
+--------------------------------------
+
+.. automodule:: PyDSS.api.src.app.arrow_writer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyDSS.api.src.app.pydss module
+------------------------------
+
+.. automodule:: PyDSS.api.src.app.pydss
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyDSS.api.src.app
+   :members:
+   :undoc-members:
+   :show-inheritance:
